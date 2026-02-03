@@ -32,3 +32,339 @@ button,
 a {
     color: #0000ff !important;
 }
+:root {
+    --ibby-bg: #050017;
+    --ibby-bg-alt: #0c0222;
+    --ibby-surface: rgba(14, 3, 40, 0.96);
+    --ibby-surface-soft: rgba(22, 6, 60, 0.9);
+    --ibby-border-soft: rgba(255, 255, 255, 0.12);
+    --ibby-border-strong: rgba(255, 255, 255, 0.18);
+    --ibby-purple: #a855ff;
+    --ibby-purple-soft: rgba(168, 85, 255, 0.2);
+    --ibby-purple-deep: #7c3aed;
+    --ibby-accent-blue: #38bdf8;
+    --ibby-accent-pink: #ec4899;
+    --ibby-text-main: #f9f5ff;
+    --ibby-text-muted: #c4b5fd;
+    --ibby-danger: #f97373;
+    --ibby-warning: #facc15;
+    --ibby-success: #4ade80;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding-top: 4.5rem;
+    padding-bottom: 3rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(168, 85, 255, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.15), transparent 55%),
+        linear-gradient(145deg, #050017, #080018 35%, #060013 80%);
+    color: var(--ibby-text-main);
+}
+
+/* Subtle glow overlay */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 255, 0.12), transparent 55%);
+    mix-blend-mode: soft-light;
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Navbar */
+
+.navbar {
+    background: linear-gradient(120deg, rgba(9, 4, 39, 0.96), rgba(12, 6, 52, 0.98));
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--ibby-border-soft);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--ibby-text-main);
+}
+
+.navbar-brand i {
+    color: var(--ibby-purple);
+}
+
+.nav-link {
+    color: var(--ibby-text-muted);
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+    color: var(--ibby-text-main);
+}
+
+/* Typography */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--ibby-text-main);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.lead {
+    color: var(--ibby-text-muted);
+}
+
+/* Hero buttons */
+
+.btn,
+.btn:focus {
+    border-radius: 9999px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-width: 1px;
+    transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.12s ease, border-color 0.18s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--ibby-purple), var(--ibby-purple-deep));
+    border-color: var(--ibby-purple-deep);
+    color: var(--ibby-text-main);
+    box-shadow: 0 14px 30px rgba(124, 58, 237, 0.55);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--ibby-purple-deep), var(--ibby-purple));
+    border-color: var(--ibby-purple);
+    box-shadow: 0 18px 40px rgba(124, 58, 237, 0.75);
+    transform: translateY(-1px);
+}
+
+.btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: var(--ibby-text-main);
+    background: transparent;
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #ffffff;
+}
+
+/* Cards */
+
+.card {
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(15, 4, 44, 0.98));
+    border-radius: 20px;
+    border: 1px solid var(--ibby-border-soft);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.75);
+    color: var(--ibby-text-main);
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 26px 60px rgba(0, 0, 0, 0.9);
+    border-color: var(--ibby-border-strong);
+}
+
+.card-header {
+    background: linear-gradient(135deg, rgba(168, 85, 255, 0.18), rgba(56, 189, 248, 0.22));
+    border-bottom: 1px solid var(--ibby-border-soft);
+    color: var(--ibby-text-main);
+}
+
+.card-body {
+    color: var(--ibby-text-muted);
+}
+
+/* Icon feature cards on homepage */
+
+.card .display-4,
+.card .feature-icon {
+    color: var(--ibby-accent-blue);
+}
+
+.card .feature-icon.vote {
+    color: var(--ibby-accent-pink);
+}
+
+/* Forms */
+
+.form-control,
+.form-select {
+    background-color: rgba(9, 9, 25, 0.92);
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    color: var(--ibby-text-main);
+    padding: 0.7rem 0.9rem;
+    box-shadow: 0 0 0 1px transparent;
+    transition: border-color 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+}
+
+.form-control::placeholder {
+    color: rgba(148, 163, 184, 0.65);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(15, 23, 42, 0.98);
+    border-color: var(--ibby-purple);
+    box-shadow: 0 0 0 1.5px rgba(168, 85, 255, 0.5);
+    outline: none;
+}
+
+.form-label {
+    color: var(--ibby-text-muted);
+    font-weight: 500;
+}
+
+/* Alerts / info strips */
+
+.alert-info {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.96));
+    border-color: rgba(56, 189, 248, 0.65);
+    color: #e0faff;
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.18), rgba(24, 16, 0, 0.96));
+    border-color: rgba(250, 204, 21, 0.7);
+    color: #fef9c3;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, rgba(248, 113, 113, 0.22), rgba(24, 0, 9, 0.96));
+    border-color: rgba(248, 113, 113, 0.72);
+    color: #fee2e2;
+}
+
+/* Subtitle cards and providers */
+
+.subtitle-card {
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), rgba(15, 4, 44, 0.98));
+    border-radius: 18px;
+    border: 1px solid var(--ibby-border-soft);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+    transition: box-shadow 0.18s ease, filter 0.18s ease, border-color 0.18s ease;
+}
+
+.subtitle-card:hover {
+    box-shadow: 0 24px 56px rgba(0, 0, 0, 0.95);
+    filter: brightness(1.03);
+    border-color: var(--ibby-border-strong);
+}
+
+/* Dashboard side panels (security, danger, etc.) */
+
+.bg-warning {
+    background: linear-gradient(135deg, rgba(250, 204, 21, 0.16), rgba(23, 15, 0, 0.96)) !important;
+    border-color: rgba(250, 204, 21, 0.7) !important;
+    color: #fef9c3 !important;
+}
+
+.bg-danger {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.18), rgba(24, 0, 9, 0.96)) !important;
+    border-color: rgba(239, 68, 68, 0.7) !important;
+    color: #fee2e2 !important;
+}
+
+.bg-info {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.96)) !important;
+    border-color: rgba(56, 189, 248, 0.7) !important;
+    color: #e0faff !important;
+}
+
+/* Links */
+
+a {
+    color: var(--ibby-accent-blue);
+    text-decoration: none;
+    transition: color 0.16s ease, text-shadow 0.16s ease;
+}
+
+a:hover {
+    color: var(--ibby-accent-pink);
+    text-shadow: 0 0 12px rgba(236, 72, 153, 0.8);
+}
+
+/* Modals */
+
+.modal-backdrop.show {
+    background: radial-gradient(circle at top, rgba(5, 0, 40, 0.96), rgba(0, 0, 0, 0.98)) !important;
+    opacity: 1 !important;
+}
+
+.modal-content {
+    border-radius: 20px;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(4, 0, 24, 0.98)) !important;
+    border: 1px solid var(--ibby-border-soft);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+    color: var(--ibby-text-main);
+    backdrop-filter: blur(24px);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%);
+    opacity: 0.8;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* Footer */
+
+.footer,
+footer {
+    background: linear-gradient(120deg, rgba(9, 4, 39, 0.98), rgba(5, 0, 26, 0.98));
+    border-top: 1px solid var(--ibby-border-soft);
+    color: var(--ibby-text-muted);
+}
+
+/* Utility tweaks */
+
+.text-muted {
+    color: var(--ibby-text-muted) !important;
+}
+
+.badge {
+    border-radius: 9999px;
+    padding: 0.3rem 0.7rem;
+}
+
+/* Responsive tweaks */
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 4rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .card {
+        box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85);
+    }
+}
