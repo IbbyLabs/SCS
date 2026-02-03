@@ -34,35 +34,57 @@ function showToast(message, category = 'success') {
     });
 }
 // Manual control for OpenSubtitles modal to prevent Bootstrap double-binding
+(function () {
+    function initOpenSubtitlesModal() {
+        // Wait until Bootstrap's JS is actually available
+        if (!window.bootstrap || !bootstrap.Modal) {
+            setTimeout(initOpenSubtitlesModal, 100);
+            return;
+        }
 
-document.addEventListener('DOMContentLoaded', function () {
-    if (!window.bootstrap) {
-        console.warn('Bootstrap JS not found; modal fix not applied.');
-        return;
-    }
+        // Try to find the OpenSubtitles modal by id containing "opensubtitles"
+        var osModalEl = document.querySelector('.modal[id*="opensubtitles"]');
+        if (!osModalEl || !osModalEl.id) {
+            return;
+        }
 
-    var osModalEl = document.getElementById('opensubtitlesModal');
-    if (!osModalEl) {
-        return;
-    }
+        var modalId = '#' + osModalEl.id;
 
-    var osTrigger = document.querySelector('[data-bs-target="#opensubtitlesModal"]');
+        // Find any trigger elements that target this modal
+        var triggers = Array.prototype.slice.call(
+            document.querySelectorAll(
+                '[data-bs-target="' + modalId + '"], ' +
+                '[href="' + modalId + '"], ' +
+                '[data-target="' + modalId + '"]'
+            )
+        );
 
-    if (osTrigger) {
-        osTrigger.removeAttribute('data-bs-toggle');
-        osTrigger.removeAttribute('data-bs-target');
-    }
+        if (!triggers.length) {
+            return;
+        }
 
-    var osModal = bootstrap.Modal.getOrCreateInstance(osModalEl, {
-        backdrop: true,
-        keyboard: true,
-        focus: true
-    });
+        // Remove Bootstrap's automatic data-API attributes to avoid double control
+        triggers.forEach(function (el) {
+            el.removeAttribute('data-bs-toggle');
+            el.removeAttribute('data-bs-target');
+            el.removeAttribute('data-target');
+        });
 
-    if (osTrigger) {
-        osTrigger.addEventListener('click', function (e) {
-            e.preventDefault();
-            osModal.show();
+        // Create or reuse a single Bootstrap modal instance
+        var osModal = bootstrap.Modal.getOrCreateInstance(osModalEl, {
+            backdrop: true,
+            keyboard: true,
+            focus: true
+        });
+
+        // Attach our own click handlers to open the modal
+        triggers.forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                e.preventDefault();
+                osModal.show();
+            });
         });
     }
-});
+
+    document.addEventListener('DOMContentLoaded', initOpenSubtitlesModal);
+})();
