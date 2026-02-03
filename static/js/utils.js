@@ -33,3 +33,36 @@ function showToast(message, category = 'success') {
         toastElement.remove();
     });
 }
+// Manual control for OpenSubtitles modal to prevent Bootstrap double-binding
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (!window.bootstrap) {
+        console.warn('Bootstrap JS not found; modal fix not applied.');
+        return;
+    }
+
+    var osModalEl = document.getElementById('opensubtitlesModal');
+    if (!osModalEl) {
+        return;
+    }
+
+    var osTrigger = document.querySelector('[data-bs-target="#opensubtitlesModal"]');
+
+    if (osTrigger) {
+        osTrigger.removeAttribute('data-bs-toggle');
+        osTrigger.removeAttribute('data-bs-target');
+    }
+
+    var osModal = bootstrap.Modal.getOrCreateInstance(osModalEl, {
+        backdrop: true,
+        keyboard: true,
+        focus: true
+    });
+
+    if (osTrigger) {
+        osTrigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            osModal.show();
+        });
+    }
+});
