@@ -10,8 +10,8 @@
     --ibby-purple-deep: #7c3aed;
     --ibby-accent-blue: #38bdf8;
     --ibby-accent-pink: #ec4899;
-    --ibby-text-main: #f9f5ff;
-    --ibby-text-muted: #c4b5fd;
+    --ibby-text-main: #ffffff;
+    --ibby-text-muted: #e5e7eb;
     --ibby-danger: #f97373;
     --ibby-warning: #facc15;
     --ibby-success: #4ade80;
@@ -89,6 +89,13 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--ibby-text-main);
     font-weight: 700;
     letter-spacing: 0.02em;
+}
+
+p,
+.card-text,
+.card-body,
+.lead {
+    color: var(--ibby-text-main);
 }
 
 .lead {
@@ -270,6 +277,18 @@ a:hover {
 }
 
 /* Modals */
+
+body.modal-open {
+    padding-right: 0 !important;
+}
+
+.modal,
+.modal-body,
+.modal-header,
+.modal-footer,
+.modal-title {
+    color: var(--ibby-text-main);
+}
 
 .modal-backdrop.show {
     background: radial-gradient(circle at top, rgba(5, 0, 40, 0.96), rgba(0, 0, 0, 0.98)) !important;
