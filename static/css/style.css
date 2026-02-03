@@ -516,3 +516,50 @@ footer {
     color: var(--ibby-text-main) !important;
     caret-color: var(--ibby-text-main);
 }
+
+/* Modal layout refinements for mobile + desktop */
+.modal-dialog {
+    max-width: 480px;
+    margin: 3.5rem auto;
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 2.5rem 1.25rem;
+    }
+}
+
+.modal-content {
+    border-radius: 20px;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(4, 0, 24, 0.98)) !important;
+    border: 1px solid var(--ibby-border-soft);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+    color: var(--ibby-text-main);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+.modal-content .modal-header,
+.modal-content .modal-footer {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.modal-content .form-control,
+.modal-content .form-select {
+    background-color: rgba(9, 9, 25, 0.96) !important;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.7) !important;
+    color: var(--ibby-text-main) !important;
+    caret-color: var(--ibby-text-main);
+}
+
+.modal-content .form-control::placeholder,
+.modal-content .form-select::placeholder {
+    color: rgba(148, 163, 184, 0.8);
+}
+
+.modal-content label,
+.modal-content p,
+.modal-content .text-muted {
+    color: var(--ibby-text-main) !important;
+}
