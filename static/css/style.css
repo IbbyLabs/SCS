@@ -305,17 +305,15 @@ body.modal-open::before {
 }
 
 .modal-backdrop.show {
-    background:
-        radial-gradient(circle at top, rgba(5, 0, 40, 0.95), rgba(0, 0, 0, 0.98));
+    background-color: rgba(5, 0, 25, 0.92) !important;
     opacity: 1 !important;
 }
 
 .modal-content {
     border-radius: 20px;
-    background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), var(--ibby-surface));
+    background-color: var(--ibby-bg-alt);
     border: 1px solid var(--ibby-border-soft) !important;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
     color: var(--ibby-text-main);
 }
 
