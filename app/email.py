@@ -80,6 +80,14 @@ async def send_async_email_with_smtp(sender, recipients, subject, text_body, htm
     from email.mime.text import MIMEText
     from email.mime.multipart import MIMEMultipart
 
+    use_tls = current_app.config.get('MAIL_USE_SSL', False)
+    start_tls = current_app.config.get('MAIL_USE_TLS', True)
+
+    current_app.logger.info(
+        f"[EMAIL] SMTP config: server={current_app.config.get('MAIL_SERVER')}, "
+        f"port={current_app.config.get('MAIL_PORT')}, use_tls={use_tls}, start_tls={start_tls}"
+    )
+
     msg = MIMEMultipart('alternative')
     msg['Subject'] = subject
     msg['From'] = sender
@@ -95,8 +103,8 @@ async def send_async_email_with_smtp(sender, recipients, subject, text_body, htm
             port=current_app.config['MAIL_PORT'],
             username=current_app.config.get('MAIL_USERNAME'),
             password=current_app.config.get('MAIL_PASSWORD'),
-            use_tls=current_app.config.get('MAIL_USE_TLS', False),
-            start_tls=current_app.config.get('MAIL_USE_STARTTLS', True),
+            use_tls=use_tls,
+            start_tls=start_tls,
         )
         current_app.logger.info(f"Email sent via SMTP to: {recipients[0]}")
     except Exception as e:
