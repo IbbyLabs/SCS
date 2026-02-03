@@ -300,19 +300,27 @@ body.modal-open {
     padding-right: 0 !important;
 }
 
-.modal,
-.modal-body,
-.modal-header,
-.modal-footer,
-.modal-title {
-    color: var(--ibby-text-main);
+.modal {
+    position: fixed !important;
+    inset: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.modal-backdrop.show {
-    background: radial-gradient(circle at top, rgba(5, 0, 40, 0.96), rgba(0, 0, 0, 0.98)) !important;
-    opacity: 1 !important;
+.modal-dialog {
+    position: relative;
+    margin: 1.5rem;
+    max-width: 600px;
+    width: 100%;
 }
 
+.modal-dialog-centered {
+    margin: 1.5rem;
+}
+
+/* Actual card */
 .modal-content {
     border-radius: 20px;
     background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(4, 0, 24, 0.98)) !important;
@@ -321,6 +329,15 @@ body.modal-open {
     color: var(--ibby-text-main) !important;
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+}
+
+.modal-body,
+.modal-header,
+.modal-footer,
+.modal-title {
+    color: var(--ibby-text-main) !important;
 }
 
 .modal-header {
@@ -331,6 +348,11 @@ body.modal-open {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+.modal-backdrop.show {
+    background: radial-gradient(circle at top, rgba(5, 0, 40, 0.96), rgba(0, 0, 0, 0.98)) !important;
+    opacity: 1 !important;
+}
+
 .btn-close {
     filter: invert(1) grayscale(100%);
     opacity: 0.8;
@@ -339,6 +361,18 @@ body.modal-open {
 .btn-close:hover {
     opacity: 1;
 }
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        margin: 1rem;
+        max-width: 100%;
+    }
+
+    .modal-content {
+        max-height: calc(100vh - 2rem);
+    }
+}
+
 
 /* Footer */
 
