@@ -11,7 +11,7 @@
     --ibby-accent-blue: #38bdf8;
     --ibby-accent-pink: #ec4899;
     --ibby-text-main: #ffffff;
-    --ibby-text-muted: #e5e7eb;
+    --ibby-text-muted: #ffffff;
     --ibby-danger: #f97373;
     --ibby-warning: #facc15;
     --ibby-success: #4ade80;
@@ -33,9 +33,9 @@ body {
     padding-bottom: 3rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
     background:
-        radial-gradient(circle at top left, rgba(168, 85, 255, 0.18), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.15), transparent 55%),
-        linear-gradient(145deg, #050017, #080018 35%, #060013 80%);
+        radial-gradient(circle at 20% 10%, rgba(168, 85, 255, 0.32), transparent 60%),
+        radial-gradient(circle at 80% 90%, rgba(88, 28, 135, 0.5), transparent 55%),
+        linear-gradient(145deg, #050017, #12002b 40%, #050017 80%);
     color: var(--ibby-text-main);
 }
 
@@ -213,6 +213,11 @@ p,
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.96));
     border-color: rgba(56, 189, 248, 0.65);
     color: #e0faff;
+}
+
+/* Hide the homepage "Like my addon" banner */
+.alert-info {
+    display: none !important;
 }
 
 .alert-warning {
