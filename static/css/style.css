@@ -543,16 +543,20 @@ footer {
     color: #fefce8;
 }
 
-/* Strong override for input text colour on auth forms */
 .form-control,
 .form-control:focus,
-.form-control[type="email"],
-.form-control[type="password"] {
+.modal-content .form-control,
+.modal-content .form-control:focus {
     color: var(--ibby-text-main) !important;
     caret-color: var(--ibby-text-main);
 }
 
-/* Modal layout refinements for mobile + desktop */
+.form-control::placeholder,
+.modal-content .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.78) !important;
+    opacity: 1 !important; /* iOS Safari likes to reduce this */
+}
+
 .modal-dialog {
     max-width: 480px;
     margin: 3.5rem auto;
