@@ -266,16 +266,6 @@ a:hover {
     opacity: 1 !important;
 }
 
-.modal {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-dialog {
-    margin: 0;
-}
-
 .modal-content {
     border-radius: 20px;
     background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(4, 0, 24, 0.98)) !important;
