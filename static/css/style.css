@@ -300,32 +300,26 @@ body.modal-open {
 }
 
 .modal {
-    position: fixed !important;
-    inset: 0;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    color: var(--ibby-text-main);
+}
+
+.modal-backdrop.show {
+    background: radial-gradient(circle at top, rgba(5, 0, 40, 0.96), rgba(0, 0, 0, 0.98)) !important;
+    opacity: 1 !important;
 }
 
 .modal-dialog {
-    position: relative;
-    margin: 1.5rem;
+    margin: 1.75rem auto;
     max-width: 600px;
     width: 100%;
 }
 
-.modal-dialog-centered {
-    margin: 1.5rem;
-}
-
-/* Actual card */
 .modal-content {
     border-radius: 20px;
     background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(4, 0, 24, 0.98)) !important;
     border: 1px solid var(--ibby-border-soft) !important;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9) !important;
-    color: var(--ibby-text-main) !important;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+    color: var(--ibby-text-main);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     max-height: calc(100vh - 3rem);
@@ -345,11 +339,6 @@ body.modal-open {
 
 .modal-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.modal-backdrop.show {
-    background: radial-gradient(circle at top, rgba(5, 0, 40, 0.96), rgba(0, 0, 0, 0.98)) !important;
-    opacity: 1 !important;
 }
 
 .btn-close {
@@ -602,12 +591,17 @@ footer {
     color: var(--ibby-text-main) !important;
 }
 
-.form-control::placeholder {
-    color: rgba(255, 255, 255, 0.78) !important;
-    opacity: 1 !important;
+.form-control,
+.form-control:focus,
+.modal-content .form-control,
+.modal-content .form-control:focus {
+    color: var(--ibby-text-main) !important;
+    caret-color: var(--ibby-text-main);
 }
 
-.modal-content .form-control {
-    background-color: rgba(9, 9, 25, 0.97) !important;
+.form-control::placeholder,
+.modal-content .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.78) !important;
+    opacity: 1 !important;
 }
 
