@@ -49,10 +49,12 @@ body {
     letter-spacing: 0.03em;
 }
 .subtitle-card {
-    transition: transform 0.2s;
+    transition: box-shadow 0.2s ease, filter 0.2s ease;
 }
+
 .subtitle-card:hover {
-    transform: translateY(-5px);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.75);
+    filter: brightness(1.02);
 }
 .active-subtitle {
     border: 2px solid #198754;
@@ -256,4 +258,45 @@ a:hover {
         transform: none;
         width: auto;
     }
+}
+
+/* Modal styling to match dark glass theme */
+.modal-backdrop.show {
+    background: radial-gradient(circle at top, rgba(5, 0, 40, 0.92), rgba(0, 0, 0, 0.96));
+    opacity: 1;
+}
+
+.modal-content {
+    border-radius: 20px;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(4, 0, 24, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
+    color: #f8f9ff;
+    backdrop-filter: blur(24px);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.modal-title {
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.modal-body {
+    color: #f8f9ff;
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%);
+    opacity: 0.8;
+}
+
+.btn-close:hover {
+    opacity: 1;
 }
