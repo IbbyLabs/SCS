@@ -52,14 +52,13 @@ def create_admin(email, username, password):
 
 @cli.command('init-db')
 def init_db_command():
-    """Initialize database tables"""
-    from app.extensions import engine, Base
-    
+    from app.extensions import async_engine, Base
+
     async def _init():
-        async with engine.begin() as conn:
+        async with async_engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
         click.echo("Database tables created")
-    
+
     with app.app_context():
         asyncio.run(_init())
 
