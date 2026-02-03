@@ -299,19 +299,9 @@ body.modal-open {
     padding-right: 0 !important;
 }
 
-.modal {
-    color: var(--ibby-text-main);
-}
-
 .modal-backdrop.show {
     background: radial-gradient(circle at top, rgba(5, 0, 40, 0.96), rgba(0, 0, 0, 0.98)) !important;
     opacity: 1 !important;
-}
-
-.modal-dialog {
-    margin: 1.75rem auto;
-    max-width: 600px;
-    width: 100%;
 }
 
 .modal-content {
@@ -322,13 +312,11 @@ body.modal-open {
     color: var(--ibby-text-main);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    max-height: calc(100vh - 3rem);
-    overflow-y: auto;
 }
 
-.modal-body,
 .modal-header,
 .modal-footer,
+.modal-body,
 .modal-title {
     color: var(--ibby-text-main) !important;
 }
@@ -350,17 +338,19 @@ body.modal-open {
     opacity: 1;
 }
 
-@media (max-width: 576px) {
-    .modal-dialog {
-        margin: 1rem;
-        max-width: 100%;
-    }
-
-    .modal-content {
-        max-height: calc(100vh - 2rem);
-    }
+.form-control,
+.form-control:focus,
+.modal-content .form-control,
+.modal-content .form-control:focus {
+    color: var(--ibby-text-main) !important;
+    caret-color: var(--ibby-text-main);
 }
 
+.form-control::placeholder,
+.modal-content .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.78) !important;
+    opacity: 1 !important;
+}
 
 /* Footer */
 
@@ -530,78 +520,3 @@ footer {
     background: linear-gradient(135deg, rgba(250, 204, 21, 0.9), rgba(202, 138, 4, 1)) !important;
     color: #fefce8;
 }
-
-.form-control,
-.form-control:focus,
-.modal-content .form-control,
-.modal-content .form-control:focus {
-    color: var(--ibby-text-main) !important;
-    caret-color: var(--ibby-text-main);
-}
-
-.form-control::placeholder,
-.modal-content .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.78) !important;
-    opacity: 1 !important;
-}
-
-.modal-dialog {
-    max-width: 480px;
-    margin: 3.5rem auto;
-}
-
-@media (max-width: 576px) {
-    .modal-dialog {
-        margin: 2.5rem 1.25rem;
-    }
-}
-
-.modal-content {
-    border-radius: 20px;
-    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(4, 0, 24, 0.98)) !important;
-    border: 1px solid var(--ibby-border-soft);
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
-    color: var(--ibby-text-main);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-}
-
-.modal-content .modal-header,
-.modal-content .modal-footer {
-    border-color: rgba(255, 255, 255, 0.08);
-}
-
-.modal-content .form-control,
-.modal-content .form-select {
-    background-color: rgba(9, 9, 25, 0.96) !important;
-    border-radius: 14px;
-    border: 1px solid rgba(148, 163, 184, 0.7) !important;
-    color: var(--ibby-text-main) !important;
-    caret-color: var(--ibby-text-main);
-}
-
-.modal-content .form-control::placeholder,
-.modal-content .form-select::placeholder {
-    color: rgba(148, 163, 184, 0.8);
-}
-
-.modal-content label,
-.modal-content p,
-.modal-content .text-muted {
-    color: var(--ibby-text-main) !important;
-}
-
-.form-control,
-.form-control:focus,
-.modal-content .form-control,
-.modal-content .form-control:focus {
-    color: var(--ibby-text-main) !important;
-    caret-color: var(--ibby-text-main);
-}
-
-.form-control::placeholder,
-.modal-content .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.78) !important;
-    opacity: 1 !important;
-}
-
