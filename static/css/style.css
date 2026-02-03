@@ -1,316 +1,34 @@
+/* TEST STYLESHEET — PURPOSE: confirm Docker pulls new image */
+
 body {
-    padding-top: 4.5rem;
-    padding-bottom: 3rem;
-    min-height: 100vh;
-    background: radial-gradient(circle at top, #5b2cff 0%, #241046 35%, #050013 100%);
-    color: #f8f9ff;
-}
-.navbar-brand {
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: #f8f9ff !important;
-}
-.navbar {
-    background: linear-gradient(to right, rgba(5, 0, 40, 0.95), rgba(10, 1, 70, 0.95));
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    background: linear-gradient(to right, rgba(3, 0, 25, 0.95), rgba(6, 0, 35, 0.95));
-    color: rgba(248, 249, 255, 0.85);
-    text-align: center;
-    z-index: 10;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    font-size: 0.82rem;
-}
-.card {
-    margin-bottom: 20px;
-    border-radius: 18px;
-    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), rgba(5, 0, 30, 0.96));
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(26px);
-}
-.card-header,
-.card-body {
-    color: #f8f9ff;
+    background: #ff00ff !important;
+    color: #000 !important;
+    font-family: Arial, sans-serif !important;
 }
 
-.card-header {
-    background: transparent;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    font-weight: 600;
-    letter-spacing: 0.03em;
-}
-.subtitle-card {
-    transition: box-shadow 0.2s ease, filter 0.2s ease;
-}
-
-.subtitle-card:hover {
-    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.75);
-    filter: brightness(1.02);
-}
-.active-subtitle {
-    border: 2px solid #198754;
+nav,
+.navbar,
+.footer,
+.card,
+.modal-content {
+    background: #00ffff !important;
+    color: #000 !important;
+    border: 3px solid #ff0000 !important;
+    box-shadow: none !important;
 }
 
-.form-control,
-.form-select {
-    background-color: rgba(5, 2, 24, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: #f8f9ff;
+h1, h2, h3, h4, h5 {
+    color: #ff0000 !important;
 }
 
-.form-control::placeholder {
-    color: rgba(230, 233, 255, 0.55);
-}
-
-.form-control:focus,
-.form-select:focus {
-    background-color: rgba(7, 3, 30, 1);
-    border-color: #c77dff;
-    box-shadow: 0 0 0 0.18rem rgba(199, 125, 255, 0.45);
-    color: #ffffff;
-}
-
+button,
+.btn,
 .btn-primary {
-    background: linear-gradient(135deg, #ff6bcb 0%, #7b5cff 45%, #4dd0e1 100%);
-    border: 0;
-    color: #ffffff;
-    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-}
-
-.btn-primary:hover,
-.btn-primary:focus {
-    filter: brightness(1.08);
-    transform: translateY(-1px);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.8);
-}
-
-.btn-primary:active {
-    transform: translateY(0);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+    background: #000 !important;
+    color: #ff0 !important;
+    border: 2px solid #ff0 !important;
 }
 
 a {
-    color: #8fd6ff;
-}
-
-a:hover {
-    color: #c4f0ff;
-    text-decoration: underline;
-}
-.vote-buttons .btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-}
-.vote-count {
-    font-weight: bold;
-    min-width: 30px;
-    display: inline-block;
-    text-align: center;
-}
-.poster-img {
-    max-height: 300px;
-    object-fit: contain;
-}
-
-.toast-container {
-    position: fixed;
-    top: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1050;
-}
-
-.poster-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.poster-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.poster-image.loaded {
-    opacity: 1;
-}
-
-.poster-fallback {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 0.375rem;
-    z-index: 1;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.poster-fallback i {
-    font-size: 2rem;
-    color: #6c757d;
-    animation: pulse 2s infinite;
-}
-
-.poster-fallback.hidden {
-    opacity: 0;
-}
-
-@keyframes pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
-}
-.poster-wrapper-card {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    min-height: 200px;
-    overflow: hidden;
-}
-
-.poster-wrapper-card .poster-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    opacity: 0;
-    transform: scale(1.05);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.poster-wrapper-card .poster-image.loaded {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.poster-fallback-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    z-index: 1;
-    opacity: 1;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.poster-fallback-card i {
-    font-size: 4rem;
-    color: #6c757d;
-    animation: fadeInOut 2s ease-in-out infinite;
-}
-
-.poster-fallback-card.hidden {
-    opacity: 0;
-    transform: scale(0.95);
-}
-
-
-.list-group-item.bg-info {
-    transition: filter 0.3s ease-in-out; 
-    filter: brightness(1); 
-}
-
-.list-group-item.bg-info.highlighted {
-    filter: brightness(0.9); 
-}
-
-/* Coffee Banner */
-.coffee-banner {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1050;
-    max-width: 350px;
-    width: 90%;
-}
-
-@media (min-width: 768px) {
-    .coffee-banner {
-        left: auto;
-        right: 20px;
-        transform: none;
-        width: auto;
-    }
-}
-
-/* Modal styling to match dark glass theme */
-.modal-backdrop.show {
-    background: radial-gradient(circle at top, rgba(5, 0, 40, 0.92), rgba(0, 0, 0, 0.96)) !important;
-    opacity: 1 !important;
-}
-
-.modal-content {
-    border-radius: 20px;
-    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), rgba(4, 0, 24, 0.98)) !important;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
-    color: #f8f9ff;
-    backdrop-filter: blur(24px);
-}
-
-.modal-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.modal-title {
-    font-weight: 600;
-    letter-spacing: 0.03em;
-}
-
-.modal-body {
-    color: #f8f9ff;
-}
-
-.modal-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.btn-close {
-    filter: invert(1) grayscale(100%);
-    opacity: 0.8;
-}
-
-.btn-close:hover {
-    opacity: 1;
-}
-
-/* IbbyLabs – Override Bootstrap modal to glass dark */
-body .modal.show .modal-dialog .modal-content {
-    background: radial-gradient(
-        circle at top left,
-        rgba(255, 255, 255, 0.06),
-        rgba(4, 0, 24, 0.98)
-    ) !important;
-    border-radius: 20px !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    color: #f8f9ff !important;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9) !important;
-    backdrop-filter: blur(24px) !important;
+    color: #0000ff !important;
 }
