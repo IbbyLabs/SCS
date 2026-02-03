@@ -300,6 +300,10 @@ body.modal-open {
     overflow: hidden;
 }
 
+body.modal-open::before {
+    display: none;
+}
+
 .modal-backdrop.show {
     background:
         radial-gradient(circle at top, rgba(5, 0, 40, 0.95), rgba(0, 0, 0, 0.98));
@@ -313,8 +317,6 @@ body.modal-open {
     border: 1px solid var(--ibby-border-soft) !important;
     box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9);
     color: var(--ibby-text-main);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
 }
 
 .modal-header,
