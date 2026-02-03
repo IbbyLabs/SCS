@@ -228,7 +228,6 @@ p,
     color: #e0faff;
 }
 
-/* Hide the homepage "Like my addon" banner */
 .alert-info {
     display: none !important;
 }
@@ -554,7 +553,7 @@ footer {
 .form-control::placeholder,
 .modal-content .form-control::placeholder {
     color: rgba(255, 255, 255, 0.78) !important;
-    opacity: 1 !important; /* iOS Safari likes to reduce this */
+    opacity: 1 !important;
 }
 
 .modal-dialog {
