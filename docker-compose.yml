@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build: .
@@ -28,3 +26,5 @@ services:
       - ./data:/app/data
       - ./logs:/app/logs
       - ./subtitles:/app/subtitles
+      - ./static:/app/static
+      - ./templates:/app/templates
