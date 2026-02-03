@@ -310,3 +310,17 @@ a:hover {
 .btn-close:hover {
     opacity: 1;
 }
+
+/* IbbyLabs – Override Bootstrap modal to glass dark */
+body .modal.show .modal-dialog .modal-content {
+    background: radial-gradient(
+        circle at top left,
+        rgba(255, 255, 255, 0.06),
+        rgba(4, 0, 24, 0.98)
+    ) !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #f8f9ff !important;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(24px) !important;
+}
