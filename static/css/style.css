@@ -15,6 +15,17 @@
     --ibby-danger: #f97373;
     --ibby-warning: #facc15;
     --ibby-success: #4ade80;
+    --ibby-gradient: linear-gradient(135deg, #4c1d95, #a855ff 55%, #ec4899);
+    --bs-primary: #a855ff;
+    --bs-primary-rgb: 168, 85, 255;
+    --bs-info: #38bdf8;
+    --bs-info-rgb: 56, 189, 248;
+    --bs-success: #4ade80;
+    --bs-success-rgb: 74, 222, 128;
+    --bs-warning: #facc15;
+    --bs-warning-rgb: 250, 204, 21;
+    --bs-danger: #f97373;
+    --bs-danger-rgb: 249, 115, 115;
 }
 
 *,
@@ -31,7 +42,7 @@ body {
     margin: 0;
     padding-top: 4.5rem;
     padding-bottom: 3rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    font-family: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
     background:
         radial-gradient(circle at 20% 10%, rgba(110, 0, 255, 0.22), transparent 65%),
         radial-gradient(circle at 80% 90%, rgba(65, 0, 140, 0.45), transparent 60%),
@@ -70,10 +81,27 @@ body::before {
     font-weight: 700;
     letter-spacing: 0.03em;
     color: var(--ibby-text-main);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .navbar-brand i {
     color: var(--ibby-purple);
+}
+
+.brand-mark {
+    color: var(--ibby-text-main);
+    background: var(--ibby-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand-subtitle {
+    font-weight: 500;
+    color: var(--ibby-text-muted);
+    opacity: 0.9;
 }
 
 .nav-link {
@@ -150,6 +178,30 @@ p,
     border-color: #ffffff;
 }
 
+.btn-outline-primary {
+    border-color: var(--ibby-purple);
+    color: var(--ibby-text-main);
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: var(--ibby-purple-soft);
+    border-color: var(--ibby-purple);
+    color: var(--ibby-text-main);
+}
+
+.btn-outline-secondary {
+    border-color: rgba(148, 163, 184, 0.6);
+    color: var(--ibby-text-main);
+    background: transparent;
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(148, 163, 184, 0.12);
+    border-color: rgba(226, 232, 240, 0.8);
+    color: var(--ibby-text-main);
+}
+
 /* Cards */
 
 .card {
@@ -222,9 +274,9 @@ p,
 /* Alerts / info strips */
 
 .alert-info {
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.96));
-    border-color: rgba(56, 189, 248, 0.65);
-    color: #e0faff;
+    background: linear-gradient(135deg, rgba(168, 85, 255, 0.2), rgba(15, 23, 42, 0.96));
+    border-color: rgba(168, 85, 255, 0.65);
+    color: #f5f0ff;
 }
 
 /* Hide the homepage "Like my addon" banner */
@@ -291,6 +343,10 @@ a {
 a:hover {
     color: var(--ibby-accent-pink);
     text-shadow: 0 0 12px rgba(236, 72, 153, 0.8);
+}
+
+.text-primary {
+    color: var(--ibby-purple) !important;
 }
 
 /* Modals */

@@ -13,7 +13,7 @@
             padding: 20px;
         }
         .header {
-            background-color: #007bff;
+            background: linear-gradient(135deg, #4c1d95, #a855ff);
             color: white;
             padding: 10px 20px;
             text-align: center;
@@ -27,7 +27,7 @@
         }
         .button {
             display: inline-block;
-            background-color: #007bff;
+            background-color: #7c3aed;
             color: white;
             text-decoration: none;
             padding: 10px 20px;
@@ -44,11 +44,11 @@
 </head>
 <body>
     <div class="header">
-        <h1>Stremio Community Subs</h1>
+        <h1>IbbyLabs Community Subtitles</h1>
     </div>
     <div class="content">
         <h2>Hello {{ user.username }},</h2>
-        <p>Thank you for registering with Stremio Community Subs! Please confirm your email address by clicking the button below:</p>
+        <p>Thank you for registering with IbbyLabs Community Subtitles! Please confirm your email address by clicking the button below:</p>
         
         <p style="text-align: center;">
             <a href="{{ url_for('auth.confirm_email', token=token, _external=True) }}" class="button">Confirm Email</a>
@@ -59,9 +59,9 @@
         
         <p>This link will expire in 24 hours.</p>
         
-        <p>If you did not register for Stremio Community Subs, please ignore this email.</p>
+        <p>If you did not register for IbbyLabs Community Subtitles, please ignore this email.</p>
         
-        <p>Best regards,<br>The Stremio Community Subs Team</p>
+        <p>Best regards,<br>The IbbyLabs Community Subtitles Team</p>
     </div>
     <div class="footer">
         <p>This is an automated message, please do not reply to this email.</p>
