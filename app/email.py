@@ -129,7 +129,7 @@ async def send_email(subject, recipients, text_body, html_body, sender=None):
 async def send_confirmation_email(user):
     token = user.get_email_confirmation_token()
     await send_email(
-        subject='Stremio Community Subs - Confirm Your Email',
+        subject='IbbyLabs Community Subtitles - Confirm Your Email',
         recipients=[user.email],
         text_body=await render_template('email/confirm_email.txt', user=user, token=token),
         html_body=await render_template('email/confirm_email.html', user=user, token=token)
@@ -139,7 +139,7 @@ async def send_confirmation_email(user):
 async def send_password_reset_email(user):
     token = user.get_reset_password_token()
     await send_email(
-        subject='Stremio Community Subs - Reset Your Password',
+        subject='IbbyLabs Community Subtitles - Reset Your Password',
         recipients=[user.email],
         text_body=await render_template('email/reset_password.txt', user=user, token=token),
         html_body=await render_template('email/reset_password.html', user=user, token=token)

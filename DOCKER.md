@@ -1,6 +1,6 @@
 # Docker Deployment Guide
 
-## Quick Start
+## Quick Start (Local Dev)
 
 1. **Copy environment file:**
    ```bash
@@ -9,12 +9,12 @@
 
 2. **Edit `.env` file and set REQUIRED credentials:**
    - Secret key (SECRET_KEY - min 32 characters)
-   
-   **That's it!** Email verification is disabled by default for easy self-hosting.
-   
+
+   For local dev you can disable email verification:
+   - DISABLE_EMAIL_VERIFICATION=true
+
    **Optional configurations:**
-   - Email (set DISABLE_EMAIL_VERIFICATION=false and configure MAIL_*)
-   - Database URL (SQLite by default, can use MySQL/PostgreSQL)
+   - Database URL (SQLite by default in docker-compose, can use MySQL/PostgreSQL)
    - Cloudinary (for cloud storage instead of local files)
    - TMDB API (for better metadata)
    - MAL Client ID (for anime metadata)
@@ -53,24 +53,48 @@
 ### Logs
 - Application logs: `./logs/`
 
-## Minimal Configuration
+## Minimal Configuration (Local Dev Only)
 
 Only 1 thing is required in `.env`:
 ```bash
 SECRET_KEY=your-random-64-char-hex-string
 ```
 
-That's it! Email verification is disabled by default.
+That's it! Email verification can be disabled for local development.
 
-**To enable email verification:**
+**To enable email verification (Brevo SMTP example):**
 ```bash
 DISABLE_EMAIL_VERIFICATION=false
-MAIL_SERVER=smtp.gmail.com
+EMAIL_METHOD=smtp
+MAIL_DEFAULT_SENDER="IbbyLabs <noreply@your-domain.com>"
+MAIL_SERVER=smtp-relay.brevo.com
 MAIL_USERNAME=your-email@gmail.com
-MAIL_PASSWORD=your-app-password
+MAIL_PASSWORD=your-brevo-smtp-key
 ```
 
 Everything else has sensible defaults!
+
+## Production Checklist
+
+Set these in `.env` before deploying:
+
+- `FLASK_ENV=production`
+- `SECRET_KEY` (32+ chars)
+- `SERVER_NAME=your-domain.com`
+- `PREFERRED_URL_SCHEME=https`
+- `DATABASE_URL=sqlite:////app/data/stremio_subtitles.db` (local file) or `postgresql://user:password@host:5432/dbname`
+- `DISABLE_EMAIL_VERIFICATION=false`
+- `EMAIL_METHOD=smtp` (or `resend` / `local_api`)
+- `MAIL_DEFAULT_SENDER="IbbyLabs <noreply@your-domain.com>"`
+- `MAIL_SERVER`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD` (for SMTP, Brevo uses smtp-relay.brevo.com)
+
+## Brevo Setup Checklist
+
+1. Verify your sender domain in Brevo (recommended for deliverability).
+2. Add and verify the sender email address (must match `MAIL_DEFAULT_SENDER`).
+3. Generate an SMTP key in Brevo and use it as `MAIL_PASSWORD`.
+4. Use your Brevo SMTP login as `MAIL_USERNAME`.
+5. Confirm SPF/DKIM records are published for your domain.
 
 ## Commands
 

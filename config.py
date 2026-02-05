@@ -14,6 +14,7 @@ class Config:
 
     # URL Scheme for external URLs
     PREFERRED_URL_SCHEME = os.environ.get('PREFERRED_URL_SCHEME', 'http')
+    SERVER_NAME = os.environ.get('SERVER_NAME')
 
     # Storage Backend ('local' or 'cloudinary')
     STORAGE_BACKEND = os.environ.get('STORAGE_BACKEND', 'local')
@@ -32,7 +33,7 @@ class Config:
     
     # Mail configuration
     EMAIL_METHOD = os.environ.get('EMAIL_METHOD', 'smtp')  # 'smtp', 'resend', or 'local_api'
-    MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER')
+    MAIL_DEFAULT_SENDER = os.environ.get('MAIL_DEFAULT_SENDER') or os.environ.get('MAIL_USERNAME')
     
     # Email verification (can be disabled for self-hosting)
     DISABLE_EMAIL_VERIFICATION = os.environ.get('DISABLE_EMAIL_VERIFICATION', 'false').lower() in ['true', '1', 't', 'y', 'yes']
@@ -104,7 +105,7 @@ class Config:
     USE_GEVENT = True
     
     # Flask server configuration (for app.run() and waitress)
-    SERVER_NAME = None  # Flask will use FLASK_RUN_HOST:FLASK_RUN_PORT from .env
+    # SERVER_NAME is set from env above when needed for external URL generation
 
 
 class DevelopmentConfig(Config):

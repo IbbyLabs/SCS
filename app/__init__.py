@@ -6,6 +6,64 @@ from .extensions import init_async_db, auth_manager, init_cors, cache, csrf
 from config import get_config
 
 
+def validate_production_config(app):
+    """Fail fast on missing critical settings in production."""
+    if app.config.get('DEBUG'):
+        return
+
+    errors = []
+    warnings = []
+
+    if not app.config.get('SECRET_KEY'):
+        errors.append('SECRET_KEY')
+
+    db_uri = app.config.get('SQLALCHEMY_DATABASE_URI') or ''
+    if db_uri.startswith('sqlite'):
+        warnings.append('Using sqlite in production; not recommended for multi-instance deployments')
+    if not app.config.get('USE_SQLITE') and not os.environ.get('DATABASE_URL'):
+        errors.append('DATABASE_URL (required for production)')
+
+    if app.config.get('DISABLE_EMAIL_VERIFICATION', False):
+        errors.append('DISABLE_EMAIL_VERIFICATION must be false in production')
+    else:
+        email_method = app.config.get('EMAIL_METHOD', 'smtp')
+        if email_method not in {'smtp', 'resend', 'local_api'}:
+            errors.append('EMAIL_METHOD must be smtp, resend, or local_api')
+
+        if not app.config.get('MAIL_DEFAULT_SENDER'):
+            errors.append('MAIL_DEFAULT_SENDER')
+
+        if email_method == 'smtp':
+            if not app.config.get('MAIL_SERVER'):
+                errors.append('MAIL_SERVER')
+            has_user = bool(app.config.get('MAIL_USERNAME'))
+            has_pass = bool(app.config.get('MAIL_PASSWORD'))
+            if has_user != has_pass:
+                errors.append('MAIL_USERNAME and MAIL_PASSWORD (both required if using auth)')
+            if not has_user and not has_pass:
+                warnings.append('SMTP auth not configured; ensure your SMTP server allows unauthenticated send')
+        elif email_method == 'resend':
+            if not app.config.get('RESEND_API_KEY'):
+                errors.append('RESEND_API_KEY')
+        elif email_method == 'local_api':
+            if not app.config.get('LOCAL_MAIL_API_URL') or not app.config.get('LOCAL_MAIL_API_KEY'):
+                errors.append('LOCAL_MAIL_API_URL and LOCAL_MAIL_API_KEY')
+
+    if app.config.get('PREFERRED_URL_SCHEME') != 'https':
+        warnings.append('PREFERRED_URL_SCHEME should be https in production')
+
+    if not app.config.get('SERVER_NAME'):
+        warnings.append('SERVER_NAME not set; confirmation links will use the incoming request host')
+
+    if errors:
+        raise RuntimeError(
+            "Production config missing/invalid: " + "; ".join(sorted(set(errors)))
+        )
+
+    for warning in warnings:
+        app.logger.warning(f"PROD CONFIG: {warning}")
+
+
 def create_app():
     """Create and configure the Quart application."""
     app = Quart(
@@ -34,6 +92,8 @@ def create_app():
 
     logging.basicConfig(level=logging.DEBUG if app.config['DEBUG'] else logging.WARNING)
     app.logger.setLevel(logging.DEBUG if app.config['DEBUG'] else logging.WARNING)
+
+    validate_production_config(app)
 
     # Better Stack
     if app.config.get('USE_BETTERSTACK') and app.config.get('BETTERSTACK_SOURCE_TOKEN'):

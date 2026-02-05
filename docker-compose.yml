@@ -9,7 +9,9 @@ services:
       - FLASK_ENV=${FLASK_ENV:-production}
       - SECRET_KEY=${SECRET_KEY}
       - DATABASE_URL=${DATABASE_URL:-sqlite:////app/data/stremio_subtitles.db}
-      - DISABLE_EMAIL_VERIFICATION=${DISABLE_EMAIL_VERIFICATION:-true}
+      - DISABLE_EMAIL_VERIFICATION=${DISABLE_EMAIL_VERIFICATION:-false}
+      - EMAIL_METHOD=${EMAIL_METHOD:-smtp}
+      - MAIL_DEFAULT_SENDER=${MAIL_DEFAULT_SENDER:-}
       - MAIL_SERVER=${MAIL_SERVER:-}
       - MAIL_PORT=${MAIL_PORT:-587}
       - MAIL_USE_TLS=${MAIL_USE_TLS:-True}
@@ -22,6 +24,7 @@ services:
       - MAL_CLIENT_ID=${MAL_CLIENT_ID:-}
       - BETTERSTACK_SOURCE_TOKEN=${BETTERSTACK_SOURCE_TOKEN:-}
       - PREFERRED_URL_SCHEME=${PREFERRED_URL_SCHEME:-https}
+      - SERVER_NAME=${SERVER_NAME:-}
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
